@@ -1,69 +1,282 @@
-import Image from "next/image";
+import Link from "next/link";
+import { Nav } from "@/components/Nav";
+import { Inline } from "@/components/Inline";
+import { Reveal } from "@/components/Reveal";
+import { Card, Section, Tag } from "@/components/ui";
+import { caseStudies } from "@/data/caseStudies";
+import { about, experiences, highlights, projects, site } from "@/data/home";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <Nav />
+      <main className="flex-1 pt-14">
+        <Hero />
+        <Highlights />
+        <Experience />
+        <CaseStudies />
+        <Projects />
+        <About />
       </main>
-    </div>
+      <Footer />
+    </>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="mx-auto max-w-5xl px-5 pt-16 pb-8 sm:pt-24 sm:pb-12">
+      <p className="animate-fade-up text-sm font-extrabold tracking-wide text-ink uppercase">
+        {site.role} · {site.years}
+      </p>
+      <h1
+        className="animate-fade-up mt-4 text-4xl leading-tight font-extrabold tracking-tight text-gray-900 sm:text-5xl sm:leading-tight"
+        style={{ animationDelay: "100ms" }}
+      >
+        안녕하세요,
+        <br />
+        프론트엔드 개발자 <span className="marker rounded-xl px-2">안지은</span>입니다
+      </h1>
+      <div
+        className="animate-fade-up mt-7 max-w-2xl space-y-3"
+        style={{ animationDelay: "200ms" }}
+      >
+        {site.intro.map((p) => (
+          <p key={p} className="leading-relaxed text-ink">
+            {p}
+          </p>
+        ))}
+      </div>
+      <div
+        className="print-hidden animate-fade-up mt-9 flex flex-wrap gap-3"
+        style={{ animationDelay: "300ms" }}
+      >
+        <Link
+          href="#case-studies"
+          className="rounded-xl bg-mblue px-6 py-2.5 text-sm font-bold text-gray-900 transition-transform hover:-translate-y-0.5"
+        >
+          케이스 스터디 보기
+        </Link>
+        <Link
+          href="#experience"
+          className="rounded-xl bg-lyellow px-6 py-2.5 text-sm font-bold text-gray-900 transition-transform hover:-translate-y-0.5"
+        >
+          경력 보기
+        </Link>
+        <a
+          href={`mailto:${site.email}`}
+          className="rounded-xl bg-lblue px-6 py-2.5 text-sm font-bold text-gray-900 transition-transform hover:-translate-y-0.5"
+        >
+          연락하기
+        </a>
+      </div>
+    </section>
+  );
+}
+
+function Highlights() {
+  return (
+    <Section
+      id="highlights"
+      title="Key Highlights"
+      subtitle="수치로 보는 대표 성과 — 각 성과의 과정은 케이스 스터디에서 확인할 수 있습니다"
+    >
+      <div className="grid gap-5 sm:grid-cols-2">
+        {highlights.map((h, i) => (
+          <Reveal key={h.caseSlug} delay={i * 80}>
+            <Link
+              href={`/case/${h.caseSlug}`}
+              className="group print-avoid-break block h-full rounded-xl border-2 border-mblue bg-white p-6 transition-all hover:-translate-y-1 hover:bg-lblue/30"
+            >
+              <p className="inline-block rounded-xl bg-lpink px-2 text-2xl font-extrabold tracking-tight text-gray-900">
+                {h.value}
+              </p>
+              <p className="mt-2 font-semibold text-gray-900">{h.label}</p>
+              <p className="print-hidden mt-3 text-sm font-bold text-ink/60 transition-colors group-hover:text-gray-900">
+                케이스 스터디 →
+              </p>
+            </Link>
+          </Reveal>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function Experience() {
+  return (
+    <Section id="experience" title="Experience" subtitle="5년간의 실무 경험">
+      <div className="space-y-6">
+        {experiences.map((exp, i) => (
+          <Reveal key={exp.company} delay={i * 80}>
+            <Card>
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <h3 className="text-xl font-extrabold text-gray-900">
+                  {exp.company}
+                  <span className="ml-2 text-base font-semibold text-ink">{exp.role}</span>
+                </h3>
+                <p className="font-mono text-sm text-ink">{exp.period}</p>
+              </div>
+              <p className="mt-4 leading-relaxed text-ink">{exp.summary}</p>
+              <div className="mt-4">
+                <p className="text-xs font-extrabold tracking-wide text-ink uppercase">
+                  핵심 작업 영역
+                </p>
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  {exp.areas.map((area) => (
+                    <Tag key={area} accent>
+                      {area}
+                    </Tag>
+                  ))}
+                </div>
+              </div>
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {exp.stack.map((s) => (
+                  <Tag key={s}>{s}</Tag>
+                ))}
+              </div>
+            </Card>
+          </Reveal>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function CaseStudies() {
+  const sorted = [...caseStudies].sort((a, b) => a.order - b.order);
+  return (
+    <Section
+      id="case-studies"
+      title="Case Studies"
+      subtitle="문제를 정의하고, 접근을 선택하고, 검증까지 마친 과정의 기록"
+    >
+      <div className="grid gap-5 sm:grid-cols-2">
+        {sorted.map((cs, i) => (
+          <Reveal key={cs.slug} delay={(i % 2) * 80} className="h-full">
+            <Link
+              href={`/case/${cs.slug}`}
+              className="group print-avoid-break flex h-full flex-col rounded-xl border-2 border-mblue bg-white p-6 transition-all hover:-translate-y-1 hover:bg-lblue/30"
+            >
+              <div className="flex items-center gap-2">
+                <Tag accent>{cs.metric}</Tag>
+                <span className="text-xs font-medium text-ink">{cs.project}</span>
+              </div>
+              <h3 className="mt-3 text-lg leading-snug font-extrabold text-gray-900">
+                {cs.title}
+              </h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-ink">
+                <Inline text={cs.summary} />
+              </p>
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {cs.stack.map((s) => (
+                  <Tag key={s}>{s}</Tag>
+                ))}
+              </div>
+            </Link>
+          </Reveal>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function Projects() {
+  return (
+    <Section id="projects" title="Projects" subtitle="담당했던 프로젝트">
+      <div className="grid gap-5 lg:grid-cols-2">
+        {projects.map((p, i) => (
+          <Reveal key={p.name} delay={(i % 2) * 80} className="h-full">
+            <Card className="flex h-full flex-col">
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <h3 className="text-lg font-extrabold text-gray-900">{p.name}</h3>
+                <p className="font-mono text-xs text-ink">{p.period}</p>
+              </div>
+              {p.role && <p className="mt-1 text-sm font-bold text-gray-900">{p.role}</p>}
+              <p className="mt-3 text-sm leading-relaxed text-ink">
+                <Inline text={p.description} />
+              </p>
+              <ul className="mt-4 flex-1 space-y-2">
+                {p.bullets.map((b, j) => (
+                  <li key={j} className="flex gap-2 text-sm leading-relaxed text-ink">
+                    <span
+                      aria-hidden
+                      className="mt-[0.5em] h-1.5 w-1.5 shrink-0 rounded-full bg-mblue"
+                    />
+                    <span>
+                      <Inline text={b} />
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              {p.achievement && (
+                <p className="mt-4 rounded-xl bg-lpink px-4 py-3 text-sm leading-relaxed font-semibold text-gray-900">
+                  🏆 {p.achievement}
+                </p>
+              )}
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {p.stack.map((s) => (
+                  <Tag key={s}>{s}</Tag>
+                ))}
+              </div>
+            </Card>
+          </Reveal>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function About() {
+  return (
+    <Section id="about" title="About">
+      <div className="grid gap-5 sm:grid-cols-3">
+        <Reveal>
+          <Card className="h-full">
+            <p className="text-xs font-extrabold tracking-wide text-ink uppercase">Education</p>
+            <p className="mt-2 font-extrabold text-gray-900">{about.education.school}</p>
+            <p className="mt-1 text-sm text-ink">{about.education.detail}</p>
+            <p className="mt-1 font-mono text-xs text-ink">{about.education.period}</p>
+          </Card>
+        </Reveal>
+        <Reveal delay={80}>
+          <Card className="h-full">
+            <p className="text-xs font-extrabold tracking-wide text-ink uppercase">Certificate</p>
+            <p className="mt-2 font-extrabold text-gray-900">{about.certificate.name}</p>
+            <p className="mt-1 font-mono text-xs text-ink">{about.certificate.date}</p>
+          </Card>
+        </Reveal>
+        <Reveal delay={160}>
+          <Card className="h-full">
+            <p className="text-xs font-extrabold tracking-wide text-ink uppercase">Contact</p>
+            <a
+              href={`mailto:${site.email}`}
+              className="mt-2 block text-sm font-bold text-gray-900 underline decoration-mblue decoration-2 underline-offset-2"
+            >
+              {site.email}
+            </a>
+            <a
+              href={site.github}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-1 block text-sm font-bold text-gray-900 underline decoration-mblue decoration-2 underline-offset-2"
+            >
+              github.com/jieun-git
+            </a>
+          </Card>
+        </Reveal>
+      </div>
+    </Section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="border-t-2 border-lblue py-8">
+      <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-2 px-5 text-sm text-ink">
+        <p>© 2026 {site.name}. Built with Next.js & Tailwind CSS.</p>
+        <p>Last Updated: 2026.08</p>
+      </div>
+    </footer>
   );
 }

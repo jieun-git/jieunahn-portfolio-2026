@@ -1,26 +1,131 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* 팔레트 — 이 5색 + 흰색/검정 텍스트로만 구성한다 */
+@theme {
+  --color-lblue: #cfefff; /* light blue  */
+  --color-mblue: #b8d7ff; /* blue        */
+  --color-cream: #fff1e6; /* cream       */
+  --color-lyellow: #fff2bd; /* yellow — 일반 하이라이트 */
+  --color-lpink: #fbe8ff; /* pink — 중요 성과 강조 */
+  --color-ink: #4b5563; /* dark gray   */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
+    "Noto Sans KR", "Malgun Gothic", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  word-break: keep-all;
+}
+
+::selection {
+  background-color: #fff2bd;
+}
+
+/* ---------- animation ---------- */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out both;
+}
+
+/* 스크롤 진입 시 나타나는 요소 (Reveal 컴포넌트) */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* 히어로 형광펜 하이라이트 — 좌→우로 칠해지는 효과 */
+@keyframes sweep {
+  from {
+    background-size: 0% 100%;
+  }
+  to {
+    background-size: 100% 100%;
+  }
+}
+
+.marker {
+  background-image: linear-gradient(#fff2bd, #fff2bd);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  animation: sweep 0.9s 0.4s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .animate-fade-up,
+  .marker {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    background-size: 100% 100% !important;
+  }
+}
+
+/* ---------- print ---------- */
+@media print {
+  html {
+    scroll-behavior: auto;
+  }
+  body {
+    background: #fff !important;
+  }
+  .print-hidden {
+    display: none !important;
+  }
+  .reveal,
+  .animate-fade-up,
+  .marker {
+    opacity: 1 !important;
+    transform: none !important;
+    background-size: 100% 100% !important;
+  }
+  .print-avoid-break {
+    break-inside: avoid;
+  }
+  a {
+    text-decoration: none !important;
+  }
+  main {
+    padding-top: 0 !important;
+  }
+  * {
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+  }
+}
+
+@page {
+  size: A4;
+  margin: 14mm 12mm;
 }
