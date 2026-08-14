@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 const anchors = [
   { id: "highlights", href: "/#highlights", label: "Highlights" },
-  { id: "experience", href: "/#experience", label: "Experience" },
+  { id: "career", href: "/#career", label: "Career" },
   { id: "case-studies", href: "/#case-studies", label: "Case Studies" },
   { id: "projects", href: "/#projects", label: "Projects" },
   { id: "about", href: "/#about", label: "About" },

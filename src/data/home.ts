@@ -1,4 +1,4 @@
-import type { ExperienceItem, Highlight, ProjectItem } from "./types";
+import type { CareerItem, Highlight, ProjectItem } from "./types";
 
 export const site = {
   name: "안지은",
@@ -7,8 +7,8 @@ export const site = {
   email: "anjieun95@naver.com",
   github: "https://github.com/jieun-git",
   intro: [
-    "통합 모니터링 솔루션을 개발해 온 5년차 프론트엔드 개발자입니다. SMS, NMS, DPM, APM, AIOps 등 여러 도메인의 대시보드, 알람 정책, 시스템 관리 화면을 개발해 왔습니다.",
-    "기능을 구현하는 데 그치지 않고, 반복적인 개발과 유지보수 과정에서 비효율을 발견하고 개선하는 데 관심이 많습니다. 최근에는 AI를 활용해 동일한 구조의 화면 개발을 자동화하고, 대규모 코드베이스의 품질을 개선하며 개발 생산성을 높이고 있습니다.",
+    "통합 모니터링 솔루션을 개발해 온 5년차 프론트엔드 개발자입니다. 여러 도메인의 대시보드와 알람 정책, 시스템 관리 화면을 만들어 왔습니다.",
+    "반복되는 개발과 유지보수에서 비효율을 찾아 개선합니다. 최근에는 AI로 화면 개발을 자동화하고, 대규모 코드베이스의 품질을 정리하는 일을 하고 있습니다.",
   ],
 };
 
@@ -30,39 +30,73 @@ export const highlights: Highlight[] = [
   },
   {
     value: "16개 화면",
-    label: "Step 기반 공통 Validation 플로우 재사용",
+    label: "Step 기반 공통 Validation 플로우 설계",
     caseSlug: "validation",
   },
 ];
 
-export const experiences: ExperienceItem[] = [
+export const careers: CareerItem[] = [
   {
     company: "Nkia",
     role: "Frontend Developer",
     period: "2021.11 ~ 재직 중",
     summary:
-      "EMS, APM, NMS, ITSM 등 다양한 모니터링 서비스를 통합한 On-premise 플랫폼 Polestar 10을 중심으로, 공통 플랫폼(알람, 유지보수, 사용자 포털)과 도메인(SMS, AIOps) UI를 개발하고 있습니다. MR 교차 리뷰로 프로젝트 컨벤션 준수 여부와 불필요한 디버깅 코드 등을 점검합니다.",
+      "On-premise 통합 모니터링 플랫폼 Polestar 10을 중심으로, 구독형 SaaS 서비스와 IoT 안전 진단 솔루션의 UI를 개발했습니다. 여러 도메인으로 구성된 Polestar 10의 UI 일관성을 확보하기 위한 디자인 시스템도 구축했습니다.",
     areas: [
       "AI 기반 개발 자동화",
       "코드 품질 개선",
       "공통 Validation 설계",
-      "디자인 시스템",
+      "디자인 시스템 구축",
       "대시보드 · 알람 정책 UI",
+      "SaaS 빌링 · 조직 관리 UI",
+      "실시간 데이터 시각화",
     ],
-    stack: ["React", "TypeScript", "Recoil", "Ant Design", "ag-Grid", "Apache ECharts"],
+    stack: [
+      "React",
+      "TypeScript",
+      "Recoil",
+      "Redux",
+      "TanStack Query",
+      "Ant Design",
+      "ag-Grid",
+      "Apache ECharts",
+      "Storybook",
+      "WebSocket",
+    ],
   },
   {
     company: "오비고",
     role: "Frontend Developer Intern",
     period: "2020.01 ~ 2020.06",
     summary:
-      "Toyota 차량용 애플리케이션 UI 개발 및 퍼블리싱을 지원했습니다. 차량용 앱스토어의 애플리케이션 다운로드 진행 UI를 개발하고, 차량용 음악 애플리케이션 UI를 퍼블리싱했습니다.",
+      "Toyota 차량용 앱스토어의 애플리케이션 다운로드 진행 UI를 개발하고, 차량용 음악 애플리케이션 UI를 퍼블리싱했습니다.",
     areas: ["차량용 애플리케이션 UI", "퍼블리싱"],
     stack: ["Vue", "JavaScript", "HTML", "CSS"],
   },
 ];
 
 export const projects: ProjectItem[] = [
+  {
+    name: "Polestar 10",
+    period: "2023.03 ~ 현재",
+    featured: true,
+    description:
+      "EMS, APM, NMS, ITSM 등 다양한 모니터링 서비스를 통합해 대시보드, 알람·정책 관리, 시스템 관리 기능을 제공하는 On-premise 기반 통합 운영 플랫폼",
+    bullets: [
+      "공통 플랫폼(알람, 유지보수, 사용자 포털, Web URL) 및 도메인(SMS, AIOps) UI 개발",
+      "대시보드, 알람 정책, 시스템 관리 등 주요 운영 화면 개발",
+      "MR 교차 리뷰를 통해 프로젝트 컨벤션 준수 여부와 불필요한 디버깅 코드 등을 점검",
+    ],
+    stack: ["React", "TypeScript", "Recoil", "Ant Design", "ag-Grid", "Apache ECharts"],
+    caseSlugs: [
+      "automation",
+      "dead-code",
+      "validation",
+      "deploy-recovery",
+      "console-cleanup",
+      "drawer-refetch",
+    ],
+  },
   {
     name: "NDS (Nkia Design System)",
     period: "2022.12 ~ 2023.07",
@@ -107,7 +141,7 @@ export const projects: ProjectItem[] = [
       "하나의 연속된 라인 차트에서 데이터 유형에 따라 구간별 색상을 다르게 표시하고, ECharts 기본 legend·tooltip 대신 운영 요구사항에 맞는 UI를 직접 구현",
       "`html-to-image` 기반 PDF 생성의 화질 저하·한글 인코딩 문제를 `react-to-pdf` 전환으로 해결",
     ],
-    stack: ["React", "JavaScript", "Redux", "Ant Design", "Apache ECharts", "WebSocket"],
+    stack: ["React", "JavaScript", "Redux", "Ant Design", "Apache ECharts", "Less", "WebSocket"],
   },
   {
     name: "AI Prompt Manager",

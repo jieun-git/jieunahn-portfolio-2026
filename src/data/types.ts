@@ -33,7 +33,7 @@ export interface CaseStudy {
   retrospective?: string[];
 }
 
-export interface ExperienceItem {
+export interface CareerItem {
   company: string;
   role: string;
   period: string;
@@ -51,6 +51,10 @@ export interface ProjectItem {
   stack: string[];
   achievement?: string;
   links?: { label: string; url: string }[];
+  /** 대표 프로젝트 — Projects 그리드에서 전체 폭으로 렌더링됨 */
+  featured?: boolean;
+  /** 이 프로젝트에서 파생된 케이스 스터디 slug 목록 */
+  caseSlugs?: string[];
 }
 
 export interface Highlight {

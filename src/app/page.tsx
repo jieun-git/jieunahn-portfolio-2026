@@ -3,8 +3,9 @@ import { Nav } from "@/components/Nav";
 import { Inline } from "@/components/Inline";
 import { Reveal } from "@/components/Reveal";
 import { Card, Section, Tag } from "@/components/ui";
-import { caseStudies } from "@/data/caseStudies";
-import { about, experiences, highlights, projects, site } from "@/data/home";
+import { caseStudies, getCaseStudy } from "@/data/caseStudies";
+import { about, careers, highlights, projects, site } from "@/data/home";
+import type { ProjectItem } from "@/data/types";
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
       <main className="flex-1 pt-14">
         <Hero />
         <Highlights />
-        <Experience />
+        <Career />
         <CaseStudies />
         <Projects />
         <About />
@@ -58,7 +59,7 @@ function Hero() {
           케이스 스터디 보기
         </Link>
         <Link
-          href="#experience"
+          href="#career"
           className="rounded-xl bg-lyellow px-6 py-2.5 text-sm font-bold text-gray-900 transition-transform hover:-translate-y-0.5"
         >
           경력 보기
@@ -103,27 +104,29 @@ function Highlights() {
   );
 }
 
-function Experience() {
+function Career() {
   return (
-    <Section id="experience" title="Experience" subtitle="5년간의 실무 경험">
+    <Section id="career" title="Career" subtitle="5년간의 실무 경험">
       <div className="space-y-6">
-        {experiences.map((exp, i) => (
-          <Reveal key={exp.company} delay={i * 80}>
+        {careers.map((c, i) => (
+          <Reveal key={c.company} delay={i * 80}>
             <Card>
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <h3 className="text-xl font-extrabold text-gray-900">
-                  {exp.company}
-                  <span className="ml-2 text-base font-semibold text-ink">{exp.role}</span>
+                  {c.company}
+                  <span className="ml-2 text-base font-semibold text-ink">{c.role}</span>
                 </h3>
-                <p className="font-mono text-sm text-ink">{exp.period}</p>
+                <p className="font-mono text-sm text-ink">{c.period}</p>
               </div>
-              <p className="mt-4 leading-relaxed text-ink">{exp.summary}</p>
-              <div className="mt-4">
+              <p className="mt-4 leading-relaxed text-ink">
+                <Inline text={c.summary} />
+              </p>
+              <div className="mt-5">
                 <p className="text-xs font-extrabold tracking-wide text-ink uppercase">
                   핵심 작업 영역
                 </p>
                 <div className="mt-2 flex flex-wrap gap-1.5">
-                  {exp.areas.map((area) => (
+                  {c.areas.map((area) => (
                     <Tag key={area} accent>
                       {area}
                     </Tag>
@@ -131,7 +134,7 @@ function Experience() {
                 </div>
               </div>
               <div className="mt-3 flex flex-wrap gap-1.5">
-                {exp.stack.map((s) => (
+                {c.stack.map((s) => (
                   <Tag key={s}>{s}</Tag>
                 ))}
               </div>
@@ -181,47 +184,124 @@ function CaseStudies() {
   );
 }
 
+function Bullets({ items }: { items: string[] }) {
+  return (
+    <ul className="space-y-2">
+      {items.map((b, i) => (
+        <li key={i} className="flex gap-2 text-sm leading-relaxed text-ink">
+          <span aria-hidden className="mt-[0.5em] h-1.5 w-1.5 shrink-0 rounded-full bg-mblue" />
+          <span>
+            <Inline text={b} />
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/** 대표 프로젝트 — 전체 폭을 쓰고, 파생된 케이스 스터디로 연결된다 */
+function FeaturedProject({ p }: { p: ProjectItem }) {
+  const cases = (p.caseSlugs ?? []).map(getCaseStudy).filter((cs) => cs !== undefined);
+  return (
+    <Card>
+      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+        <Tag accent>대표 프로젝트</Tag>
+        <h3 className="text-xl font-extrabold text-gray-900">{p.name}</h3>
+        <p className="font-mono text-xs text-ink">{p.period}</p>
+      </div>
+      <p className="mt-3 max-w-3xl leading-relaxed text-ink">
+        <Inline text={p.description} />
+      </p>
+      <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_1.1fr]">
+        <div>
+          <p className="text-xs font-extrabold tracking-wide text-ink uppercase">담당 업무</p>
+          <div className="mt-3">
+            <Bullets items={p.bullets} />
+          </div>
+          <div className="mt-5 flex flex-wrap gap-1.5">
+            {p.stack.map((s) => (
+              <Tag key={s}>{s}</Tag>
+            ))}
+          </div>
+        </div>
+        {cases.length > 0 && (
+          <div>
+            <p className="text-xs font-extrabold tracking-wide text-ink uppercase">
+              이 프로젝트에서 다룬 문제 {cases.length}건
+            </p>
+            <ul className="mt-3 space-y-1.5">
+              {cases.map((cs) => (
+                <li key={cs.slug}>
+                  <Link
+                    href={`/case/${cs.slug}`}
+                    className="group flex items-baseline gap-3 rounded-xl border-2 border-lblue bg-white px-4 py-2.5 transition-colors hover:border-mblue hover:bg-lblue/30"
+                  >
+                    <span className="shrink-0 font-mono text-xs font-bold text-gray-900">
+                      {cs.metric}
+                    </span>
+                    <span className="flex-1 text-sm leading-snug font-semibold text-gray-900">
+                      {cs.title}
+                    </span>
+                    <span className="print-hidden shrink-0 text-sm text-ink/50 transition-colors group-hover:text-gray-900">
+                      →
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </Card>
+  );
+}
+
+function ProjectCard({ p }: { p: ProjectItem }) {
+  return (
+    <Card className="flex h-full flex-col">
+      <div className="flex flex-wrap items-baseline justify-between gap-2">
+        <h3 className="text-lg font-extrabold text-gray-900">{p.name}</h3>
+        <p className="font-mono text-xs text-ink">{p.period}</p>
+      </div>
+      {p.role && <p className="mt-1 text-sm font-bold text-gray-900">{p.role}</p>}
+      <p className="mt-3 text-sm leading-relaxed text-ink">
+        <Inline text={p.description} />
+      </p>
+      <div className="mt-4 flex-1">
+        <Bullets items={p.bullets} />
+      </div>
+      {p.achievement && (
+        <p className="mt-4 rounded-xl bg-lpink px-4 py-3 text-sm leading-relaxed font-semibold text-gray-900">
+          🏆 {p.achievement}
+        </p>
+      )}
+      <div className="mt-4 flex flex-wrap gap-1.5">
+        {p.stack.map((s) => (
+          <Tag key={s}>{s}</Tag>
+        ))}
+      </div>
+    </Card>
+  );
+}
+
 function Projects() {
+  const featured = projects.filter((p) => p.featured);
+  const rest = projects.filter((p) => !p.featured);
   return (
     <Section id="projects" title="Projects" subtitle="담당했던 프로젝트">
-      <div className="grid gap-5 lg:grid-cols-2">
-        {projects.map((p, i) => (
-          <Reveal key={p.name} delay={(i % 2) * 80} className="h-full">
-            <Card className="flex h-full flex-col">
-              <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h3 className="text-lg font-extrabold text-gray-900">{p.name}</h3>
-                <p className="font-mono text-xs text-ink">{p.period}</p>
-              </div>
-              {p.role && <p className="mt-1 text-sm font-bold text-gray-900">{p.role}</p>}
-              <p className="mt-3 text-sm leading-relaxed text-ink">
-                <Inline text={p.description} />
-              </p>
-              <ul className="mt-4 flex-1 space-y-2">
-                {p.bullets.map((b, j) => (
-                  <li key={j} className="flex gap-2 text-sm leading-relaxed text-ink">
-                    <span
-                      aria-hidden
-                      className="mt-[0.5em] h-1.5 w-1.5 shrink-0 rounded-full bg-mblue"
-                    />
-                    <span>
-                      <Inline text={b} />
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              {p.achievement && (
-                <p className="mt-4 rounded-xl bg-lpink px-4 py-3 text-sm leading-relaxed font-semibold text-gray-900">
-                  🏆 {p.achievement}
-                </p>
-              )}
-              <div className="mt-4 flex flex-wrap gap-1.5">
-                {p.stack.map((s) => (
-                  <Tag key={s}>{s}</Tag>
-                ))}
-              </div>
-            </Card>
+      <div className="space-y-5">
+        {featured.map((p) => (
+          <Reveal key={p.name}>
+            <FeaturedProject p={p} />
           </Reveal>
         ))}
+        <div className="grid gap-5 lg:grid-cols-2">
+          {rest.map((p, i) => (
+            <Reveal key={p.name} delay={(i % 2) * 80} className="h-full">
+              <ProjectCard p={p} />
+            </Reveal>
+          ))}
+        </div>
       </div>
     </Section>
   );
