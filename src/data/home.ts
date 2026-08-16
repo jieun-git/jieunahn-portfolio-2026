@@ -16,22 +16,22 @@ export const site = {
 export const highlights: Highlight[] = [
   {
     value: "8시간 → 1시간",
-    label: "AI Skill 기반 반복 화면 개발 자동화",
+    label: "AI를 활용한 반복 화면 개발 자동화",
     caseSlug: "automation",
   },
   {
     value: "1,749건",
-    label: "정적 분석 + 회귀 검증 기반 Dead Code 제거",
+    label: "정적 분석과 회귀 검증을 통한 Dead Code 제거",
     caseSlug: "dead-code",
   },
   {
-    value: "171개",
-    label: "콘솔 에러·워닝 원인 수정 (29개 메뉴 안정화)",
+    value: "171건",
+    label: "29개 메뉴의 콘솔 에러·워닝 제거",
     caseSlug: "console-cleanup",
   },
   {
     value: "16개 화면",
-    label: "Step 기반 공통 Validation 플로우 설계",
+    label: "공통 Validation 플로우 설계·적용",
     caseSlug: "validation",
   },
 ];
@@ -42,27 +42,24 @@ export const careers: CareerItem[] = [
     role: "Frontend Developer",
     period: "2021.11 ~ 재직 중",
     summary:
-      "On-premise 통합 모니터링 플랫폼 Polestar 10을 중심으로, 구독형 SaaS 서비스와 IoT 안전 진단 솔루션의 UI를 개발했습니다. 여러 도메인으로 구성된 Polestar 10의 UI 일관성을 확보하기 위한 디자인 시스템도 구축했습니다.",
-    areas: [
-      "AI 기반 개발 자동화",
-      "코드 품질 개선",
-      "공통 Validation 설계",
-      "디자인 시스템 구축",
-      "대시보드 · 알람 정책 UI",
-      "SaaS 빌링 · 조직 관리 UI",
-      "실시간 데이터 시각화",
+      "통합 모니터링 플랫폼 Polestar 10을 중심으로, 구독형 SaaS 모니터링 서비스와 IoT 안전 진단 솔루션의 UI를 개발했습니다. Polestar 10의 UI 일관성을 위해 공통 컴포넌트와 사내 아이콘 라이브러리 구축에도 참여했습니다.",
+    projects: [
+      { name: "Polestar 10", desc: "통합 모니터링 플랫폼", period: "2023.03 ~ 현재" },
+      { name: "NDS", desc: "Polestar 10 디자인 시스템", period: "2022.12 ~ 2023.07" },
+      { name: "Polestar S", desc: "SaaS 모니터링 서비스", period: "2022.05 ~ 2022.11" },
+      { name: "AIOTION", desc: "IoT 안전 진단 솔루션", period: "2022.03 ~ 2023.11" },
     ],
     stack: [
       "React",
       "TypeScript",
       "Recoil",
       "Redux",
-      "TanStack Query",
       "Ant Design",
-      "ag-Grid",
-      "Apache ECharts",
-      "Storybook",
-      "WebSocket",
+      "AG Grid",
+      "TanStack Query",
+      "ECharts",
+      "styled-components",
+      "SCSS",
     ],
   },
   {
@@ -71,7 +68,6 @@ export const careers: CareerItem[] = [
     period: "2020.01 ~ 2020.06",
     summary:
       "Toyota 차량용 앱스토어의 애플리케이션 다운로드 진행 UI를 개발하고, 차량용 음악 애플리케이션 UI를 퍼블리싱했습니다.",
-    areas: ["차량용 애플리케이션 UI", "퍼블리싱"],
     stack: ["Vue", "JavaScript", "HTML", "CSS"],
   },
 ];

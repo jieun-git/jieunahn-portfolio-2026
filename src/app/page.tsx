@@ -77,11 +77,7 @@ function Hero() {
 
 function Highlights() {
   return (
-    <Section
-      id="highlights"
-      title="Key Highlights"
-      subtitle="수치로 보는 대표 성과 — 각 성과의 과정은 케이스 스터디에서 확인할 수 있습니다"
-    >
+    <Section id="highlights" title="Key Highlights">
       <div className="grid gap-5 sm:grid-cols-2">
         {highlights.map((h, i) => (
           <Reveal key={h.caseSlug} delay={i * 80}>
@@ -121,22 +117,33 @@ function Career() {
               <p className="mt-4 leading-relaxed text-ink">
                 <Inline text={c.summary} />
               </p>
+              {c.projects && (
+                <div className="mt-5">
+                  <p className="text-xs font-extrabold tracking-wide text-ink uppercase">
+                    주요 프로젝트
+                  </p>
+                  <ul className="mt-2 space-y-1">
+                    {c.projects.map((p) => (
+                      <li
+                        key={p.name}
+                        className="flex flex-wrap items-baseline gap-x-1.5 text-sm text-ink"
+                      >
+                        <span className="font-bold text-gray-900">{p.name}</span>
+                        <span className="text-ink/50">·</span>
+                        <span>{p.desc}</span>
+                        <span className="font-mono text-xs text-ink/70">{p.period}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
               <div className="mt-5">
-                <p className="text-xs font-extrabold tracking-wide text-ink uppercase">
-                  핵심 작업 영역
-                </p>
+                <p className="text-xs font-extrabold tracking-wide text-ink uppercase">Tech</p>
                 <div className="mt-2 flex flex-wrap gap-1.5">
-                  {c.areas.map((area) => (
-                    <Tag key={area} accent>
-                      {area}
-                    </Tag>
+                  {c.stack.map((s) => (
+                    <Tag key={s}>{s}</Tag>
                   ))}
                 </div>
-              </div>
-              <div className="mt-3 flex flex-wrap gap-1.5">
-                {c.stack.map((s) => (
-                  <Tag key={s}>{s}</Tag>
-                ))}
               </div>
             </Card>
           </Reveal>

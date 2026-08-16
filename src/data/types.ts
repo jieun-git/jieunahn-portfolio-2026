@@ -38,7 +38,8 @@ export interface CareerItem {
   role: string;
   period: string;
   summary: string;
-  areas: string[];
+  /** 재직 중 참여한 주요 프로젝트 — 없으면 렌더링되지 않음 */
+  projects?: { name: string; desc: string; period: string }[];
   stack: string[];
 }
 
