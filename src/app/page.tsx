@@ -156,11 +156,7 @@ function Career() {
 function CaseStudies() {
   const sorted = [...caseStudies].sort((a, b) => a.order - b.order);
   return (
-    <Section
-      id="case-studies"
-      title="Case Studies"
-      subtitle="문제를 정의하고, 접근을 선택하고, 검증까지 마친 과정의 기록"
-    >
+    <Section id="case-studies" title="Case Studies">
       <div className="grid gap-5 sm:grid-cols-2">
         {sorted.map((cs, i) => (
           <Reveal key={cs.slug} delay={(i % 2) * 80} className="h-full">
@@ -178,11 +174,6 @@ function CaseStudies() {
               <p className="mt-2 flex-1 text-sm leading-relaxed text-ink">
                 <Inline text={cs.summary} />
               </p>
-              <div className="mt-4 flex flex-wrap gap-1.5">
-                {cs.stack.map((s) => (
-                  <Tag key={s}>{s}</Tag>
-                ))}
-              </div>
             </Link>
           </Reveal>
         ))}
@@ -234,7 +225,7 @@ function FeaturedProject({ p }: { p: ProjectItem }) {
         {cases.length > 0 && (
           <div>
             <p className="text-xs font-extrabold tracking-wide text-ink uppercase">
-              이 프로젝트에서 다룬 문제 {cases.length}건
+              이 프로젝트의 Case Studies {cases.length}건
             </p>
             <ul className="mt-3 space-y-1.5">
               {cases.map((cs) => (
@@ -278,9 +269,12 @@ function ProjectCard({ p }: { p: ProjectItem }) {
         <Bullets items={p.bullets} />
       </div>
       {p.achievement && (
-        <p className="mt-4 rounded-xl bg-lpink px-4 py-3 text-sm leading-relaxed font-semibold text-gray-900">
-          🏆 {p.achievement}
-        </p>
+        <div className="mt-4 rounded-xl bg-lpink px-4 py-3">
+          <p className="text-xs font-extrabold tracking-wide text-ink uppercase">프로젝트 성과</p>
+          <p className="mt-1.5 text-sm leading-relaxed font-semibold text-gray-900">
+            🏆 {p.achievement}
+          </p>
+        </div>
       )}
       <div className="mt-4 flex flex-wrap gap-1.5">
         {p.stack.map((s) => (
@@ -295,7 +289,7 @@ function Projects() {
   const featured = projects.filter((p) => p.featured);
   const rest = projects.filter((p) => !p.featured);
   return (
-    <Section id="projects" title="Projects" subtitle="담당했던 프로젝트">
+    <Section id="projects" title="Projects">
       <div className="space-y-5">
         {featured.map((p) => (
           <Reveal key={p.name}>

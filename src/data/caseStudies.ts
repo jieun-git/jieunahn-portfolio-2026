@@ -4,9 +4,9 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "automation",
     order: 1,
-    title: "AI Skill 기반 반복 화면 개발 자동화",
+    title: "AI를 활용한 반복 화면 개발 자동화",
     summary:
-      "도메인마다 반복되던 CRUD·상세 화면 개발을 AI Skill로 자동화해 하루짜리 작업을 1시간으로 단축",
+      "반복되던 CRUD·상세 화면 개발을 자동화해 약 8시간 걸리던 작업을 1시간으로 단축",
     metric: "8시간 → 1시간",
     project: "Polestar 10",
     stack: ["React", "TypeScript", "AI Skill"],
@@ -85,7 +85,7 @@ export const caseStudies: CaseStudy[] = [
     order: 2,
     title: "정적 분석과 회귀 검증을 통한 Dead Code 제거",
     summary:
-      "knip 정적 분석 → 교차 검증 → Playwright 회귀 테스트의 3단계 파이프라인으로 미사용 코드를 안전하게 제거",
+      "knip 정적 분석과 교차 검증으로 삭제 대상을 선별하고, Playwright 회귀 테스트를 거쳐 미사용 코드 1,749건 제거",
     metric: "1,749건 제거",
     project: "Polestar 10",
     stack: ["knip", "Playwright"],
@@ -247,8 +247,8 @@ export const caseStudies: CaseStudy[] = [
     order: 4,
     title: "배포 후 발생하는 화면 깨짐 자동 복구",
     summary:
-      "배포로 청크 해시가 바뀔 때 발생하던 화면 깨짐을 감지해, 사용자 개입 없이 자동 복구되는 플로우를 설계",
-    metric: "사용자 개입 0회",
+      "배포 후 청크 해시 변경으로 발생하던 화면 깨짐을 감지해 사용자 개입 없이 자동 복구하도록 개선",
+    metric: "사용자 개입 없는 복구",
     project: "Polestar 10",
     stack: ["Vite", "React"],
     sections: [
@@ -357,8 +357,8 @@ export const caseStudies: CaseStudy[] = [
     order: 5,
     title: "29개 메뉴 안정화 — 콘솔 에러·워닝 제거",
     summary:
-      "누적된 콘솔 에러·워닝을 개선 과제로 직접 제안하고, 원인 단위 수정으로 29개 메뉴 영역을 안정화",
-    metric: "171개 제거",
+      "누적된 콘솔 에러·워닝을 개선 과제로 제안하고, 반복되는 원인을 찾아 공통 영역부터 수정해 29개 메뉴의 171건을 제거",
+    metric: "171건 제거",
     project: "Polestar 10",
     stack: ["React", "Ant Design"],
     sections: [
@@ -414,9 +414,9 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "drawer-refetch",
     order: 6,
-    title: "“간헐적” 화면 깜빡임의 원인 추적",
+    title: "간헐적으로 발생하던 화면 깜빡임 원인 추적",
     summary:
-      "재현 조건이 불명확하던 그리드 깜빡임을 Playwright 실측으로 특정하고, 원인 체인을 추적해 dead code 삭제로 해결",
+      "재현이 어려웠던 그리드 깜빡임을 Playwright로 반복 검증해 발생 조건을 찾고, 불필요한 API 재호출의 원인을 추적해 해결",
     metric: "API 재호출 8회 → 0회",
     project: "Polestar 10",
     stack: ["React", "Recoil", "Playwright"],

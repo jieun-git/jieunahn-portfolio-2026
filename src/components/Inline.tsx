@@ -28,7 +28,7 @@ const TECH_TERMS = [
   "WebSocket",
   "AI Skill",
   "ECharts",
-  "ag-Grid",
+  "AG Grid",
   "Recoil",
   "Redux",
   "React",

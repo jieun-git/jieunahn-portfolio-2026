@@ -78,13 +78,13 @@ export const projects: ProjectItem[] = [
     period: "2023.03 ~ 현재",
     featured: true,
     description:
-      "EMS, APM, NMS, ITSM 등 다양한 모니터링 서비스를 통합해 대시보드, 알람·정책 관리, 시스템 관리 기능을 제공하는 On-premise 기반 통합 운영 플랫폼",
+      "EMS, APM, NMS, ITSM 등 다양한 모니터링 서비스를 통합한 On-premise 기반 통합 운영 플랫폼",
     bullets: [
       "공통 플랫폼(알람, 유지보수, 사용자 포털, Web URL) 및 도메인(SMS, AIOps) UI 개발",
       "대시보드, 알람 정책, 시스템 관리 등 주요 운영 화면 개발",
       "MR 교차 리뷰를 통해 프로젝트 컨벤션 준수 여부와 불필요한 디버깅 코드 등을 점검",
     ],
-    stack: ["React", "TypeScript", "Recoil", "Ant Design", "ag-Grid", "Apache ECharts"],
+    stack: ["React", "TypeScript", "Recoil", "Ant Design", "AG Grid", "Apache ECharts", "SCSS"],
     caseSlugs: [
       "automation",
       "dead-code",
@@ -100,11 +100,11 @@ export const projects: ProjectItem[] = [
     description:
       "다양한 도메인으로 구성된 Polestar 10의 UI 일관성과 컴포넌트 재사용성을 확보하기 위해 Ant Design을 기반으로 구축한 디자인 시스템",
     bullets: [
-      "기존 아이콘 패키지를 대체하는 `nds-icons`를 구축해 사내 Nexus에 패키지로 배포하고, 검색·카테고리 분류·소스 복사를 지원하는 아이콘 조회 페이지를 Storybook에 구현",
+      "기존 아이콘 패키지를 대체하는 `nds-icons`를 구축해 사내 Nexus에 배포하고, Storybook에 아이콘 섹션을 구성해 검색 및 클릭 시 아이콘 이름 복사 기능 구현",
       "Modal, Confirm, Empty, Breadcrumb, Menu, Collapse 등 공통 UI 컴포넌트 개발 및 Storybook 문서화",
-      "신규 개발이 중단된 Moment.js를 Day.js로 전환하고, Year/Month/Day/Time/DateTime 및 RangePicker를 하나의 공통 DatePicker로 통합 — Picker 종류별로 달랐던 동작을 통일하고 빠른 날짜 선택·구간 이동 기능 추가",
+      "Moment.js를 Day.js로 전환하고, 분리되어 있던 Picker를 하나의 공통 DatePicker로 통합해 일관된 사용 방식 구성",
     ],
-    stack: ["React", "TypeScript", "Ant Design", "Storybook", "Day.js"],
+    stack: ["React", "TypeScript", "Ant Design", "Storybook", "Day.js", "SCSS"],
   },
   {
     name: "Polestar S",
@@ -113,8 +113,8 @@ export const projects: ProjectItem[] = [
       "하이브리드 클라우드 환경의 서버 상태를 모니터링하고 장애 대응을 지원하는 구독형 SaaS 모니터링 서비스",
     bullets: [
       "로그인·회원가입부터 조직 관리, 빌링, 결제, 플랜 업·다운그레이드, 관리자 기능까지 서비스 이용 전반의 주요 UI 개발",
-      "비밀번호 전달 시 평문 노출을 방지하기 위해 API 요청 전 SHA-512 기반 해시 처리 적용",
-      "TanStack Query를 활용한 서버 상태 관리 및 API 데이터 조회·캐싱, i18n 기반 한국어·영어 다국어 UI 구현",
+      "TanStack Query를 활용한 서버 상태 관리 및 API 데이터 조회·캐싱",
+      "styled-components 기반 공통 UI 구성 및 i18n을 적용한 한국어·영어 다국어 UI 구현",
     ],
     stack: [
       "React",
@@ -134,8 +134,8 @@ export const projects: ProjectItem[] = [
     description:
       "와이어로프를 사용하는 산업 현장의 안전 상태를 실시간으로 모니터링하고 이상 징후를 분석하는 IoT 솔루션",
     bullets: [
-      "새로고침으로 확인하던 게이트웨이 검수 진행 상태를 WebSocket 기반 실시간 처리로 전환, 단계별 Step UI에 진행·실패 상태가 실시간 반영되도록 구현",
-      "하나의 연속된 라인 차트에서 데이터 유형에 따라 구간별 색상을 다르게 표시하고, ECharts 기본 legend·tooltip 대신 운영 요구사항에 맞는 UI를 직접 구현",
+      "새로고침으로 확인하던 게이트웨이 검수 진행 상태를 WebSocket 기반 실시간 처리로 전환하고, 단계별 Step UI에 진행·실패 상태 반영",
+      "연속된 라인 차트에서 데이터 유형에 따라 구간별 색상을 다르게 표시하고, 운영 요구사항에 맞게 ECharts legend·tooltip 커스터마이징",
       "`html-to-image` 기반 PDF 생성의 화질 저하·한글 인코딩 문제를 `react-to-pdf` 전환으로 해결",
     ],
     stack: ["React", "JavaScript", "Redux", "Ant Design", "Apache ECharts", "Less", "WebSocket"],
@@ -147,9 +147,9 @@ export const projects: ProjectItem[] = [
     description:
       "LLM 프롬프트의 버전·평가 데이터·테스트를 관리하기 위한 사내 AI팀용 프롬프트 관리 도구",
     bullets: [
-      "전체 화면 구현, 컴포넌트 구조 구성 및 API 연동",
+      "전체 화면 구현 및 API 연동",
       "Ant Design 기반 공통 컴포넌트를 역할과 사용 목적에 따라 Data Display / Data Entry / Feedback / Layout / Navigation으로 분류해 구성",
-      "Light/Dark 모드에서의 가독성과 UI 일관성을 고려해 직접 색상 체계를 정의하고 전역 테마 구성 — 모드 전환 시 서비스 전반의 스타일이 일관되게 변경",
+      "Light/Dark 모드의 가독성과 UI 일관성을 고려해 색상 체계를 정의하고 전역 테마 구성",
     ],
     stack: ["React", "TypeScript", "Ant Design", "styled-components"],
   },
