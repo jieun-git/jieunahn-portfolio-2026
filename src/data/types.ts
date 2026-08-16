@@ -29,6 +29,8 @@ export interface CaseStudy {
   stack: string[];
   sections: CaseSection[];
   techReasons?: TechReason[];
+  /** techReasons 블록의 제목 — 없으면 기본 제목이 쓰인다 */
+  techReasonsHeading?: string;
   /** 회고 — 작성 전이면 비워두고, 채워지면 상세 페이지에 표시됨 */
   retrospective?: string[];
 }

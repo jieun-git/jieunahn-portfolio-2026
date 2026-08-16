@@ -85,7 +85,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/case/[slug]"
             {cs.techReasons && cs.techReasons.length > 0 && (
               <Reveal>
                 <section>
-                  <SectionHeading>사용 기술 — 왜 이 기술이었나</SectionHeading>
+                  <SectionHeading>{cs.techReasonsHeading ?? "사용 기술"}</SectionHeading>
                   <dl className="space-y-4">
                     {cs.techReasons.map((t) => (
                       <div key={t.name} className="rounded-xl border-2 border-mblue bg-white p-5">
