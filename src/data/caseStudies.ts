@@ -53,10 +53,6 @@ export const caseStudies: CaseStudy[] = [
               { title: "동작 테스트 · 검토", desc: "생성 결과 확인까지 약 1시간" },
             ],
           },
-          {
-            type: "placeholder",
-            label: "생성된 CRUD/상세 화면 예시 캡처 (마스킹 또는 목업)",
-          },
         ],
       },
       {
@@ -204,8 +200,16 @@ export const caseStudies: CaseStudy[] = [
             ],
           },
           {
-            type: "placeholder",
-            label: "알람 정책 Drawer 화면 — 단계별 활성/비활성 상태 (마스킹 또는 목업)",
+            type: "image",
+            src: "/images/validation-step-disabled.png",
+            alt: "알람 정책 Drawer — 상위 단계 미입력 상태로 하위 설정 영역이 비활성화된 화면",
+            caption: "상위 단계(관리 지표 등) 필수값이 입력되기 전 — 심각도 설정이 비어 있고 저장이 비활성화된 상태",
+          },
+          {
+            type: "image",
+            src: "/images/validation-step-enabled.png",
+            alt: "알람 정책 Drawer — 필수값 충족 후 하위 설정 영역과 저장 버튼이 활성화된 화면",
+            caption: "필수값 충족 후 — 지표 차트·심각도 설정이 활성화되고 저장 버튼이 활성화된 상태",
           },
         ],
       },
@@ -277,11 +281,11 @@ export const caseStudies: CaseStudy[] = [
               "안내 오버레이는 **외부 UI 라이브러리에 의존하지 않도록 구현**해, UI 라이브러리 청크 로딩에 실패한 상황에서도 표시될 수 있도록 구성",
             ],
           },
-          // TODO: 캡처 파일을 public/images/patch-update-notice.png 에 넣고 image 블록으로 교체
-          // { type: "image", src: "/images/patch-update-notice.png", alt: "최신 버전 패치 안내 오버레이", caption: "청크 에러 감지 시 표출되는 패치 안내 오버레이" },
           {
-            type: "placeholder",
-            label: "패치 안내 오버레이 캡처 (5초 카운트다운 + 지금 새로고침 버튼)",
+            type: "image",
+            src: "/images/patch-update-notice.png",
+            alt: "최신 버전 패치 안내 오버레이 — 카운트다운과 지금 새로고침 버튼",
+            caption: "청크 에러 감지 시 표출되는 패치 안내 오버레이 — 카운트다운 + 지금 새로고침 버튼",
           },
           {
             type: "p",
@@ -378,8 +382,10 @@ export const caseStudies: CaseStudy[] = [
             text: "Ant Design 버전 변경으로 여러 화면에서 동일한 경고가 발생했습니다. 각 화면의 호출부를 개별 수정하는 대신, **공통 Wrapper에서 변경된 prop을 처리하도록 개선**해 **25개 모듈에 일괄 반영**했습니다.",
           },
           {
-            type: "placeholder",
-            label: "Before/After — 개선 전 콘솔(에러·워닝 다수) vs 개선 후 콘솔(클린 상태)",
+            type: "image",
+            src: "/images/console-before-after.png",
+            alt: "개선 전후 콘솔 비교 — 에러 11건·워닝 24건에서 에러·워닝 0건으로",
+            caption: "Before: 에러 11건 · 워닝 24건 → After: No errors · No warnings",
           },
         ],
       },
