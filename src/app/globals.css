@@ -112,6 +112,9 @@ body {
   .print-avoid-break {
     break-inside: avoid;
   }
+  #about {
+    break-before: page;
+  }
   a {
     text-decoration: none !important;
   }
