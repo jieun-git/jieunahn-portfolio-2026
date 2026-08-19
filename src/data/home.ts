@@ -100,7 +100,7 @@ export const projects: ProjectItem[] = [
     description:
       "다양한 도메인으로 구성된 Polestar 10의 UI 일관성과 컴포넌트 재사용성을 확보하기 위해 Ant Design을 기반으로 구축한 디자인 시스템",
     bullets: [
-      "기존 아이콘 패키지를 대체하는 `nds-icons`를 구축해 사내 Nexus에 배포하고, Storybook에 아이콘 섹션을 구성해 검색 및 클릭 시 아이콘 이름 복사 기능 구현",
+      "npm에 배포되어 있던 기존 아이콘 라이브러리 `nds-icons`를 사내 Nexus로 이관·배포하고, Storybook에 아이콘 섹션을 구성해 검색 및 클릭 시 아이콘 이름 복사 기능 구현",
       "Modal, Confirm, Empty, Breadcrumb, Menu, Collapse 등 공통 UI 컴포넌트 개발 및 Storybook 문서화",
       "Moment.js를 Day.js로 전환하고, 분리되어 있던 Picker를 하나의 공통 DatePicker로 통합해 일관된 사용 방식 구성",
     ],
