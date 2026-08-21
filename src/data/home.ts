@@ -44,7 +44,7 @@ export const careers: CareerItem[] = [
     summary:
       "통합 모니터링 플랫폼 Polestar 10을 중심으로, 구독형 SaaS 모니터링 서비스와 IoT 안전 진단 솔루션의 UI를 개발했습니다. Polestar 10의 UI 일관성을 위해 공통 컴포넌트와 사내 아이콘 라이브러리 구축에도 참여했습니다.",
     projects: [
-      { name: "Polestar 10", desc: "통합 모니터링 플랫폼", period: "2023.03 ~ 현재" },
+      { name: "Polestar 10", desc: "통합 모니터링 플랫폼", period: "2023.03 ~ 2026.08" },
       { name: "NDS", desc: "Polestar 10 디자인 시스템", period: "2022.12 ~ 2023.07" },
       { name: "Polestar S", desc: "SaaS 모니터링 서비스", period: "2022.05 ~ 2022.11" },
       { name: "AIOTION", desc: "IoT 안전 진단 솔루션", period: "2022.03 ~ 2023.11" },
@@ -75,7 +75,7 @@ export const careers: CareerItem[] = [
 export const projects: ProjectItem[] = [
   {
     name: "Polestar 10",
-    period: "2023.03 ~ 현재",
+    period: "2023.03 ~ 2026.08",
     featured: true,
     description:
       "EMS, APM, NMS, ITSM 등 다양한 모니터링 서비스를 통합한 On-premise 기반 통합 운영 플랫폼",
